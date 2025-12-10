@@ -1,0 +1,24 @@
+# Elastalert2 configuration
+
+# Run every 1 minute
+run_every:
+  minutes: 1
+
+# Buffer of events to query
+buffer_time:
+  minutes: 15
+
+# Elasticsearch connection
+es_host: localhost
+es_port: 9200
+
+# Directory with rules
+rules_folder: elastalert/rules
+
+# Alert indices
+writeback_index: elastalert_status
+writeback_alias: elastalert_alerts
+
+# Optional: Authentication
+# es_username: elastic
+# es_password: changeme

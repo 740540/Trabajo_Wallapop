@@ -1,0 +1,33 @@
+# Alert for high-risk motorbikes (risk score >= 60)
+
+name: "High Risk Motorbike Alert"
+type: any
+index: lab001.wallapop*
+
+# Alert if risk score >= 60
+filter:
+- query:
+    range:
+      enrichment.risk_score:
+        gte: 60
+
+alert:
+  - "debug"
+
+alert_text: |
+  🚨 HIGH RISK MOTORBIKE DETECTED
+  
+  Risk Score: {enrichment.risk_score}/100
+  Risk Factors: {enrichment.risk_factors}
+  
+  Title: {title}
+  Price: €{enrichment.price} (index: {enrichment.relative_price_index})
+  
+  Suspicious Keywords: {enrichment.suspicious_keywords}
+  
+  Seller: {seller_id} ({enrichment.seller_items_today} items today)
+  Location: {location.city}
+  
+  URL: https://es.wallapop.com/item/{web_slug}
+
+alert_text_type: alert_text_only

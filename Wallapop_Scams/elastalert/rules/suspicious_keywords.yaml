@@ -1,0 +1,42 @@
+# Alert for motorbikes with specific fraud keywords
+
+name: "Suspicious Keywords - No Papers"
+type: any
+index: lab001.wallapop*
+
+# Alert if contains "sin papeles" or similar
+filter:
+- query:
+    bool:
+      should:
+        - match_phrase:
+            description: "sin papeles"
+        - match_phrase:
+            description: "sin documentación"
+        - match_phrase:
+            description: "baja definitiva"
+        - match_phrase:
+            title: "sin papeles"
+
+alert:
+  - "debug"
+
+alert_text: |
+  📋 SUSPICIOUS KEYWORDS ALERT
+  
+  Detected: Motorbike without proper documentation
+  
+  Title: {title}
+  Price: €{enrichment.price}
+  Risk Score: {enrichment.risk_score}
+  Keywords Found: {enrichment.suspicious_keywords}
+  
+  Seller: {seller_id}
+  Location: {location.city}
+  
+  URL: https://es.wallapop.com/item/{web_slug}
+  
+  Full Description:
+  {description}
+
+alert_text_type: alert_text_only

@@ -1,0 +1,48 @@
+# Alert for suspiciously low-priced motorbikes
+
+name: "Low Price Motorbike Alert"
+type: any
+index: lab001.wallapop*
+
+# Alert if relative price index < 0.5 (less than 50% of median)
+filter:
+- query:
+    bool:
+      must:
+        - range:
+            enrichment.relative_price_index:
+              lt: 0.5
+        - range:
+            enrichment.price:
+              gt: 0
+
+# Alert configuration
+alert:
+  - "debug"  # Print to console
+  # - "email"  # Uncomment and configure for email
+
+# Optional: Email settings
+# email:
+#   - "your-email@example.com"
+# smtp_host: "smtp.gmail.com"
+# smtp_port: 587
+# smtp_ssl: false
+# from_addr: "elastalert@example.com"
+# smtp_auth_file: "smtp_auth.yaml"
+
+alert_text: |
+  ⚠️ LOW PRICE MOTORBIKE DETECTED
+  
+  Title: {title}
+  Price: €{enrichment.price}
+  Relative Price Index: {enrichment.relative_price_index}
+  Risk Score: {enrichment.risk_score}
+  
+  Seller: {seller_id}
+  Location: {location.city}
+  
+  URL: https://es.wallapop.com/item/{web_slug}
+  
+  Description: {description}
+
+alert_text_type: alert_text_only

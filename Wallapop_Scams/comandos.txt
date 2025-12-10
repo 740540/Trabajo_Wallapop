@@ -1,0 +1,29 @@
+iniciar docker:
+docker-compose logs -f elasticsearch
+docker-compose up -d  #comprueba que funciona
+
+config elastic:
+python config/elasticsearch_setup.py 
+
+elastic: http://localhost:9200/
+kibana: http://localhost:5601/
+
+comprobacion json:
+#lee las primeras entradas del json
+Get-Content data/wallapop_motorbikes_20251210_enriched.json -First 1 | ConvertFrom-Json | ConvertTo-Json -Depth 5
+
+#manda el json a elastic
+python scripts/ingest_to_elastic.py data/wallapop_motorbikes_20251210_enriched.json
+
+#enriquece los datos del json
+python scripts/enrich_data.py data/wallapop_motorbikes_20251210.json
+
+#ejecuta el programa para sondear las ofertas de motos
+python scripts/motorbike_poller.py  
+
+
+
+debug para quitar politica mal craeda:
+Invoke-RestMethod -Method Delete -Uri "http://localhost:9200/lab001.wallapop-000001"
+Invoke-RestMethod -Method Delete -Uri "http://localhost:9200/_ilm/policy/lab001-wallapop-rotation"
+Invoke-RestMethod -Method Delete -Uri "http://localhost:9200/_index_template/lab001-wallapop-template"

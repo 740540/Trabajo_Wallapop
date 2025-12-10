@@ -1,0 +1,39 @@
+{
+  "general_fraud": [
+    "urgente",
+    "chollo",
+    "solo hoy",
+    "precio no negociable",
+    "oferton",
+    "ofertón",
+    "ganga",
+    "liquidacion",
+    "liquidación"
+  ],
+  "motorbike_specific": [
+    "sin papeles",
+    "sin documentacion",
+    "sin documentación",
+    "documentacion perdida",
+    "documentación perdida",
+    "baja definitiva",
+    "baja temporal",
+    "solo circuito",
+    "solo piezas",
+    "para piezas",
+    "despiece",
+    "sin itv",
+    "sin seguro",
+    "no pasa itv",
+    "km trucados",
+    "siniestrado",
+    "accidentada"
+  ],
+  "payment_scam": [
+    "envio incluido",
+    "envío incluido",
+    "solo transferencia",
+    "pago por adelantado",
+    "reserva obligatoria"
+  ]
+}
