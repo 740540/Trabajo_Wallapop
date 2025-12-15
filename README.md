@@ -48,9 +48,9 @@ This project implements an automated fraud detection system for Wallapop motorbi
 ```
 ┌──────────────────────────────────────────────┐
 │  Python Script (Local Machine)               │
-│  - Collects from Wallapop API               │
+│  - Collects from Wallapop API                │
 │  - Enriches data (risk score calculation)    │
-│  - Directly ingests to Elasticsearch        │
+│  - Directly ingests to Elasticsearch         │
 └────────────────┬─────────────────────────────┘
                  │ HTTP POST (Bulk API)
                  ▼
@@ -88,7 +88,7 @@ This project implements an automated fraud detection system for Wallapop motorbi
 │           │ Writes JSON locally              │
 │           ▼                                  │
 │  ┌──────────────────┐                        │
-│  │ Logstash         │ ◄─ Runs on Desktop    │
+│  │ Logstash         │ ◄─ Runs on Desktop     │
 │  │ - Reads files    │                        │
 │  │ - Enriches data  │                        │
 │  │ - Risk scoring   │                        │
