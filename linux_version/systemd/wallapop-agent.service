@@ -1,0 +1,19 @@
+[Unit]
+Description=Wallapop Motorbike Fraud Detection Agent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=youruser
+WorkingDirectory=/home/youruser/wallapop-agent
+ExecStart=/home/youruser/wallapop-agent/run_agent.sh
+Environment=ES_HOST=http://192.168.153.2:9200
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=wallapop-agent
+
+[Install]
+WantedBy=multi-user.target

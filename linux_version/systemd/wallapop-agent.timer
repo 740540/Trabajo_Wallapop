@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Wallapop Agent every 2 hours
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=120min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
